@@ -1,4 +1,5 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import Link from 'next/link';
 
 const getPosts = async () => {
   try {
@@ -21,13 +22,15 @@ export default async function Home() {
     <div className='py-12'>
       {posts.map((value, index) => (
         <div key={index} className="my-5 flex items-center border-solid border-2 border-gray-600 rounded-lg px-5 py-5 mx-auto my-0 w-9/12 justify-between hover:scale-110 cursor-pointer transition-all">
-          <div className="flex flex-col">
-            <h2 className="font-bold text-xl">{value.title}</h2>
-            <h3 className="text-slate-500 font-bold">{value.subtitle}</h3>
-          </div>
+          <Link href={`/${value._id}`} className='w-full'>
+            <div className="flex flex-col">
+              <h2 className="font-bold text-xl">{value.title}</h2>
+              <h3 className="text-slate-500 font-bold">{value.subtitle}</h3>
+            </div>
+          </Link>
           <div className='flex gap-7'>
-            <DeleteOutlined className='text-red-400 text-xl hover:text-red-800'/>
-            <EditOutlined className='text-blue-400 text-xl hover:text-blue-800'/>
+            <DeleteOutlined className='text-red-400 text-xl hover:text-red-800' />
+            <EditOutlined className='text-blue-400 text-xl hover:text-blue-800' />
           </div>
         </div>
       ))}

@@ -38,9 +38,8 @@ app.get("/", async(req,res) => {
     res.send(data)
 })
 
-app.post("/getblog", async(req,res) => {
-    const id = req.body.id
-    const data = await PostSchema.findOne({_id: id})
+app.get(`/getblog/:id`, async(req,res) => {
+    const data = await PostSchema.findOne({_id: req.params.id})
     try{
         if(data){
             res.send(data)
